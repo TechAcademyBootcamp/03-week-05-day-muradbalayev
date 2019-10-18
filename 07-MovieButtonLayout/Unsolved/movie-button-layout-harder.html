@@ -23,31 +23,31 @@
     <div id="movies-view"></div>
 
     <form id="movie-form">
-      <label for="movie-input">Add a Movie</label>
-      <input type="text" id="movie-input"><br>
+      <label for="movie-input">Add a Movie Bro</label>
+      <input type="text" id="movie-input">
+      <br>
 
       <!-- Button triggers new movie to be added -->
-      <input id="add-movie" type="submit" value="Add a Movie">
+      <input id="add-movie" type="submit" value="Add a Movie Bro">
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // Initial array of movies
       var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
-
       // Function for displaying movie data
-      function renderButtons() {
-
-        // YOUR CODES GOES HERE
-
+      function renderButtons() {        
+        for (var i = 0; i < movies.length; i++) {
+          var newButton = $('<button>').text(movies[i]);          
+          $('#movies-view').append(newButton);
+        }
       }
-
       // This function handles events where one button is clicked
-      $("#add-movie").on("click", function(e) {
-        
-        // YOUR CODES GOES HERE
-
+      $("#add-movie").on("click", function () {
+        event.preventDefault();
+        var newButton = $('<button>').text($('#movie-input').val());        
+        $('#movies-view').append(newButton);
+        $('#movie-input').val('');
       });
-
       // Calling the renderButtons function to display the initial list of movies
       renderButtons();
     </script>
