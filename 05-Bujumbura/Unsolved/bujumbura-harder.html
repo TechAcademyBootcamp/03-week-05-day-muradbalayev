@@ -14,14 +14,39 @@
   <div class="wind"></div>
   <div class="humidity"></div>
   <div class="temp"></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script type="text/javascript">
     // Things to accomplish:
     // Get an API Key from OpenWeatherMap API
     // Create an AJAX call to retrieve data Log the data in console
     // Log the data in HTML
     // Scream Ushindi (victory in Swahili)! at the top of your lungs
+    var getWeatherData = function (searchedCity = 'Bujumbura') {
+      $.ajax({
+        url: "https://openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=b6907d289e10d714a6e88b30761fae22",
+        success: function (data) {
+          let temp = data.main.temp;
+          let humidity = data.main.humidity;
+          let wind_speed = data.wind.speed;
+          $('.city').text(searchedCity);
+          $('.humidity').text(humidity);
+          $('.wind').text(wind_speed);
+          $('.temp').text(parseInt(temp));
+
+        },
+        error: function (errorResult) {
+          alert('alinmadi');
+        }
+      });
+    }
+
+
+
+    $(document).on('click', '#search', function () {
+      let searchedCity = $('#city_inp').val();
+      getWeatherData(searchedCity);
+    })
   </script>
 
 </body>
